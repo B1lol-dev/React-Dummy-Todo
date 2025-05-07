@@ -53,7 +53,7 @@ function Home() {
     }
 
     try {
-      const response = await axios.post("https://dummyjson.com/todos/add", {
+      const response = await axios.post(`${API_URL}/todos/add`, {
         todo: newTodo,
         completed: false,
         userId: 1,

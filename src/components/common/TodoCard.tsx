@@ -20,7 +20,7 @@ export default function TodoCard({
       className={`p-4 rounded-lg shadow-md border-l-4 ${
         completed
           ? "border-l-emerald-500 bg-emerald-50"
-          : "border-l-violet-500 bg-white"
+          : "border-l-indigo-600 bg-white"
       } flex items-center justify-between group transition-all duration-300 hover:shadow-lg`}
     >
       <p
