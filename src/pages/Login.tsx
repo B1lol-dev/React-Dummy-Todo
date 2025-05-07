@@ -22,6 +22,14 @@ function Login() {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("user", JSON.stringify(response.data));
 
+      const userResponse = await axios.get(
+        `${API_URL}/users/${response.data.id}`
+      );
+
+      if (userResponse.data.role === "admin") {
+        localStorage.setItem("adminToken", response.data.accessToken);
+      }
+
       navigate("/");
     } catch (error) {
       setError("Invalid username or password");
@@ -77,8 +85,8 @@ function Login() {
         <div className="mt-4 text-sm text-gray-600">
           <p>Demo accounts:</p>
           <ul className="mt-2">
-            <li>Username: jamesd / Password: jamesdpass</li>
-            <li>Username: admin / Password: password (Admin)</li>
+            <li>Username: jacksone / Password: jacksonepass</li>
+            <li>Username: jamesd / Password: jamesdpass (Admin)</li>
           </ul>
         </div>
       </div>
