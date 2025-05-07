@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react";
+// api
 import axios from "axios";
 import { API_URL } from "../constants/api";
+
+// hooks
+import { useState, useEffect, Fragment } from "react";
+import { useAuth } from "../hooks/useAuth";
+
+// components
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Container from "../components/helpers/Container";
 import TodoCard from "../components/common/TodoCard";
-import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 interface Todo {
@@ -81,9 +87,9 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-between min-h-screen">
       <Header />
-      <main className="py-10">
+      <main className="py-10 h-screen">
         <section>
           {token && (
             <Container>
@@ -133,7 +139,7 @@ function Home() {
           </section>
         ) : (
           <Container>
-            <div className="min-h-[80vh] flex w-full items-center justify-center flex-col gap-10">
+            <div className="flex w-full items-center justify-center flex-col gap-10">
               <h1 className="text-3xl font-semibold">
                 Please Login to see your todos
               </h1>
@@ -149,7 +155,8 @@ function Home() {
           </Container>
         )}
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 
