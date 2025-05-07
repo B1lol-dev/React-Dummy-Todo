@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import Container from "../components/helpers/Container";
 import TodoCard from "../components/common/TodoCard";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface Todo {
   id: number;
@@ -64,7 +65,7 @@ function Home() {
   const handleAddTodo = async (e: any) => {
     e.preventDefault();
     if (!token) {
-      alert("Please login to add todos");
+      toast.error("Please login to add todos");
       return;
     }
 
@@ -82,7 +83,7 @@ function Home() {
       setNewTodo("");
     } catch (error) {
       console.error("Error adding todo:", error);
-      alert("Failed to add todo");
+      toast.error("Failed to add todo");
     }
   };
 
