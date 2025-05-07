@@ -23,14 +23,14 @@ function Home() {
 
   const toggleTodo = (id: number | string) => {
     setTodos((prevTodos) =>
-      prevTodos.map((t) =>
-        t.id === id ? { ...t, completed: !t.completed } : t
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };
 
   const deleteTodo = (id: number | string) => {
-    setTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   useEffect(() => {
@@ -59,6 +59,10 @@ function Home() {
     e.preventDefault();
     if (!token) {
       alert("Please login to add todos");
+      return;
+    }
+
+    if (!newTodo) {
       return;
     }
 
