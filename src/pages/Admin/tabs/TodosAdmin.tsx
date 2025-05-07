@@ -9,7 +9,7 @@ import TodoCard from "../../../components/common/TodoCard";
 import TodoForm from "../../../components/common/TodoForm";
 import { useAuth } from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { CheckSquare, Loader2, Search, Filter, RefreshCw } from "lucide-react";
+import { Loader2, Search, Filter, RefreshCw } from "lucide-react";
 
 interface Todo {
   id: number;
@@ -63,19 +63,19 @@ const TodosAdmin = () => {
     }
   };
 
-  const handleToggleComplete = async (id: number, completed: boolean) => {
-    try {
-      await updateTodo(id, { completed });
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-          todo.id === id ? { ...todo, completed } : todo
-        )
-      );
-    } catch (error) {
-      console.error("Error updating todo:", error);
-      toast.error("Failed to update todo status");
-    }
-  };
+  //   const handleToggleComplete = async (id: number, completed: boolean) => {
+  //     try {
+  //       await updateTodo(id, { completed });
+  //       setTodos((prevTodos) =>
+  //         prevTodos.map((todo) =>
+  //           todo.id === id ? { ...todo, completed } : todo
+  //         )
+  //       );
+  //     } catch (error) {
+  //       console.error("Error updating todo:", error);
+  //       toast.error("Failed to update todo status");
+  //     }
+  //   };
 
   const handleEditTodo = async (id: number, text: string) => {
     try {

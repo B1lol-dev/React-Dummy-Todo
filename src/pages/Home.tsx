@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_URL } from "../constants/api";
 
 // hooks
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 // components

@@ -17,6 +17,8 @@ export default function TodoCard({
   onDelete,
   onEdit,
 }: TodoCardProps) {
+  onEdit = onEdit;
+
   return (
     <div
       className={`p-4 rounded-lg shadow-md border-l-4 ${
