@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# React-Dummy-Todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+React-Dummy-Todo is a simple and efficient Todo application built with modern web technologies. It provides a clean and responsive interface for managing tasks and users, with separate pages for Home, Login, and an Admin Dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Vite** - Fast and modern build tool.
+- **TypeScript** - Strongly typed JavaScript for better code quality.
+- **TailwindCSS** - Utility-first CSS framework for styling.
+- **Lucide-React** - Icon library for React.
+- **Axios** - Promise-based HTTP client for API requests.
+- **React-Router-Dom** - Declarative routing for React applications.
+- **DummyJSON** - Fake REST API for testing and prototyping.
+- **ESLint** - Linter for maintaining code quality.
+- **React-Hot-Toast** - Notifications for React.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Home Page**: Overview of the application.
+- **Login Page**: Secure authentication for users.
+- **Admin Dashboard**:
+  - **Users Tab**: Manage user data.
+  - **Todos Tab**: Manage tasks.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/B1lol-dev/React-Dummy-Todo.git
+   cd React-Dummy-Todo
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).  
+Feel free to use and modify it as needed.
