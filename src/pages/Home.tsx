@@ -4,6 +4,8 @@ import { API_URL } from "../constants/api";
 import Header from "../components/Header";
 import Container from "../components/helpers/Container";
 import TodoCard from "../components/common/TodoCard";
+import { useAuth } from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 interface Todo {
   id: number;
@@ -17,6 +19,7 @@ function Home() {
   const [newTodo, setNewTodo] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
+  const { isAuthenticated, user } = useAuth();
 
   const toggleTodo = (id: number | string) => {
     setTodos((prevTodos) =>
@@ -35,9 +38,16 @@ function Home() {
   }, []);
 
   async function fetchTodos() {
+    if (!isAuthenticated()) {
+      return null;
+    }
+
     try {
       const response = await axios.get(`${API_URL}/todos`);
-      setTodos(response.data.todos || []);
+      const filtredTodos = response.data.todos.filter(
+        (todo: Todo) => todo.userId == user.id
+      );
+      setTodos(filtredTodos || []);
     } catch (error) {
       console.error("Error fetching todos:", error);
     } finally {
@@ -69,7 +79,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="mt-10">
+      <main className="py-10">
         <section>
           {token && (
             <Container>
@@ -94,28 +104,46 @@ function Home() {
           )}
         </section>
 
-        <section>
-          {isLoading ? (
-            <Container>
-              <p>Loading...</p>
-            </Container>
-          ) : (
-            <Container>
-              <div className="space-y-2">
-                {todos.map((todo) => (
-                  <TodoCard
-                    id={todo.id}
-                    key={todo.id}
-                    todo={todo.todo}
-                    completed={todo.completed}
-                    onToggle={toggleTodo}
-                    onDelete={deleteTodo}
-                  />
-                ))}
-              </div>
-            </Container>
-          )}
-        </section>
+        {isAuthenticated() ? (
+          <section>
+            {isLoading ? (
+              <Container>
+                <p>Loading...</p>
+              </Container>
+            ) : (
+              <Container>
+                <div className="space-y-2">
+                  {todos.map((todo) => (
+                    <TodoCard
+                      id={todo.id}
+                      key={todo.id}
+                      todo={todo.todo}
+                      completed={todo.completed}
+                      onToggle={toggleTodo}
+                      onDelete={deleteTodo}
+                    />
+                  ))}
+                </div>
+              </Container>
+            )}
+          </section>
+        ) : (
+          <Container>
+            <div className="min-h-[80vh] flex w-full items-center justify-center flex-col gap-10">
+              <h1 className="text-3xl font-semibold">
+                Please Login to see your todos
+              </h1>
+              <Link to={"/login"}>
+                <button
+                  type="button"
+                  className="bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 px-15"
+                >
+                  Login
+                </button>
+              </Link>
+            </div>
+          </Container>
+        )}
       </main>
     </>
   );

@@ -85,7 +85,7 @@ function Login() {
         <div className="mt-4 text-sm text-gray-600">
           <p>Demo accounts:</p>
           <ul className="mt-2">
-            <li>Username: jacksone / Password: jacksonepass</li>
+            <li>Username: natalieh / Password: nataliehpass</li>
             <li>Username: jamesd / Password: jamesdpass (Admin)</li>
           </ul>
         </div>

@@ -37,7 +37,7 @@ const Header = () => {
             onClick={closeMenu}
           >
             <CheckSquare className="h-6 w-6" />
-            <span>TodoMaster</span>
+            <span>DummyTodo</span>
           </Link>
 
           {/* Desktop Navigation */}
