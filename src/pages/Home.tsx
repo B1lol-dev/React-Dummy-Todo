@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "../constants/api";
 import Header from "../components/Header";
 import Container from "../components/helpers/Container";
+import TodoCard from "../components/common/TodoCard";
 
 interface Todo {
   id: number;
@@ -16,6 +17,18 @@ function Home() {
   const [newTodo, setNewTodo] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("token");
+
+  const toggleTodo = (id: number | string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
+      )
+    );
+  };
+
+  const deleteTodo = (id: number | string) => {
+    setTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+  };
 
   useEffect(() => {
     fetchTodos();
@@ -90,16 +103,14 @@ function Home() {
             <Container>
               <div className="space-y-2">
                 {todos.map((todo) => (
-                  <div
+                  <TodoCard
+                    id={todo.id}
                     key={todo.id}
-                    className={`p-4 rounded shadow bg-white ${
-                      todo.completed ? "opacity-75" : ""
-                    }`}
-                  >
-                    <p className={todo.completed ? "line-through" : ""}>
-                      {todo.todo}
-                    </p>
-                  </div>
+                    todo={todo.todo}
+                    completed={todo.completed}
+                    onToggle={toggleTodo}
+                    onDelete={deleteTodo}
+                  />
                 ))}
               </div>
             </Container>
