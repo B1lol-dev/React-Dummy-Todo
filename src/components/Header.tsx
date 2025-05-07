@@ -13,6 +13,7 @@ const Header = () => {
     logout();
     setIsMenuOpen(false);
     navigate("/");
+    window.location.reload();
   };
 
   const toggleMenu = () => {
