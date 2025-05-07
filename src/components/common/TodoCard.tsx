@@ -4,8 +4,9 @@ interface TodoCardProps {
   id: string | number;
   todo: string;
   completed: boolean;
-  onToggle: (id: string | number) => void;
-  onDelete?: (id: string | number) => void;
+  onToggle: (id: any, completed?: boolean) => void;
+  onDelete?: (id: any) => void;
+  onEdit?: (id: number, text: string) => void;
 }
 
 export default function TodoCard({
@@ -14,6 +15,7 @@ export default function TodoCard({
   completed,
   onToggle,
   onDelete,
+  onEdit,
 }: TodoCardProps) {
   return (
     <div
